@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<info xmlns:xsi= "http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
+    <id>breakhousecustom</id>
+    <name>Breakhouse Custom Configuration</name>
+    <summary><![CDATA[Breakhouse Custom Nextcloud Configuration]]></summary>
+    <description><![CDATA[]]></description>
+    <version>20.0.2</version>
+    <licence>agpl</licence>
+    <author mail="yuwono.darmawan@wengkerindo.xyz" homepage="https://github.com/yuwonodarmawan/breakhousecustom">Yuwono Darmawan</author>
+    <namespace>BreakhouseCustom</namespace>
+    <category>customization</category>
+    <website>https://github.com/yuwonodarmawan/breakhousecustom</website>
+    <bugs>https://github.com/yuwonodarmawan/breakhousecustom/issues</bugs>
+    <screenshot></screenshot>
+    <dependencies>
+        <nextcloud min-version="20" max-version="20"/>
+    </dependencies>
+    <settings>
+        <personal>OCA\BreakhouseCustom\Settings\Personal</personal>
+        <admin>OCA\BreakhouseCustom\Settings\Admin</admin>
+    </settings>
+</info>
