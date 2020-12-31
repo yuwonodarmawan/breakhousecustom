@@ -66,13 +66,13 @@ class Admin implements ISettings {
      * @return string
      */
     public function getSection(): string {
-        return 'theming';
+        return 'additional';
     }
 
     /**
      * @return int
      */
     public function getPriority(): int {
-        return 50;
+        return 98;
     }
 }

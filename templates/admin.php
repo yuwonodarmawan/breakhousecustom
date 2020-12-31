@@ -25,15 +25,67 @@
 
 
 script('breakhousecustom', 'settings-admin');
+
+$mail_smtpauthtype = [
+        ''      => $l->t('None'),
+        'LOGIN' => $l->t('Login'),
+        'PLAIN' => $l->t('Plain'),
+        'NTLM'  => $l->t('NT LAN Manager'),
+];
+
+$mail_smtpsecure = [
+        ''              => $l->t('None'),
+        'ssl'   => $l->t('SSL/TLS'),
+        'tls'   => $l->t('STARTTLS'),
+];
+
+$mail_smtpmode = [
+        ['smtp', 'SMTP'],
+];
+if ($_['sendmail_is_available']) {
+        $mail_smtpmode[] = ['sendmail', 'Sendmail'];
+}
+if ($_['mail_smtpmode'] === 'qmail') {
+        $mail_smtpmode[] = ['qmail', 'qmail'];
+}
+
+$mail_sendmailmode = [
+        'smtp' => 'smtp (-bs)',
+        'pipe' => 'pipe (-t)'
+];
+$retention_days=30;
 ?>
 
+
 <div id="breakhousecustom" class="breakhousecustom-admin section">
-    <h2><?php p($l->t("Breeze Dark")); ?></h2>
-    <p><?php p($l->t("A Dark theme based on Breeze Dark by the KDE project. Please refresh the page for changes to take effect.")); ?></p>
-    <p><?php p($l->t("This setting will enable the theme by default, for any unauthenticated users and users who haven't set a preference.")); ?></p>
-    <input type="checkbox" class="checkbox" id="breakhousecustom-theme-enabled" <?php p($themeEnabled ? "checked" : ""); ?>>
+    <h2><?php p($l->t("Breakhouse Custom Configuration")); ?></h2>
+    <p><?php p($l->t("This App cover the following custom configuration :")); ?></p>
+    <p><?php p($l->t("- Core | Disable \"drag-and-drop to move\" of folders and files behaviour on web interface")); ?></p>
+    <p><?php p($l->t("- Core | Remove all default folders / files from new user skeleton")); ?></p>
+    <p><?php p($l->t("- Core | Under \"Personal Info\" in Settings, remove the Nextcloud promo elements from bottom of page (\"Reasons to use Nextcloud\" link and the 5 linked social media / feed / email etc icons) ")); ?></p>
+    <p><?php p($l->t("- Dashboard | Show \"Customize\" button only for those in group MAINTENANCE-MODE")); ?></p>
+    <p><?php p($l->t("- Dashboard | Add \"boxbg.jpg\" as default background")); ?></p>
+    <p><?php p($l->t("- Dashboard | \"Recommended Files\" widget, change panel header text to Recently Accessed")); ?></p>
+    <p><?php p($l->t("- Dashboard | Change evening greeting text from \"Good night, [name]\" to \"Good evening, [name]\"")); ?></p>
+    <p><?php p($l->t("- Deleted Files | Increase retention time to 45 days (up from 30)")); ?></p>
+</div>
+
+<div class="section">
+    <p><label for="files_retention"><?php p($l->t('How long do we keep files in the trash bin ?')); ?></label>
+        <select name="files_retention" id="trash_bin_retention"><?php for ($x = 30; $x <= 100; $x+=5) { ?>
+             <option value ="<?php echo p($x)?>"><?php echo p($x)?></option> 
+				<?php } ?>
+        </select> days.
+    </p>
+    <p><label for="files_retention"><?php p($l->t('Dashboard edit panel only available for group :')); ?></label>
+        <select name="panel_group" id="customized_dashboard">
+             <option value ="MAINTENANCE-MODE" seleted>MAINTENANCE-MODE</option>
+        </select> 
+    </p>
+
+<!--    <input type="checkbox" class="checkbox" id="breakhousecustom-theme-enabled" <?php p($themeEnabled ? "checked" : ""); ?>>
     <label for="breakhousecustom-theme-enabled"><?php p($l->t("Enable Breeze Dark theme by default")); ?></label>
     <p><?php p($l->t("This setting will allow you to choose if the login page should be themed when the theme is enabled by default")); ?></p>
     <input type="checkbox" class="checkbox" id="breakhousecustom-theme-login-page" <?php p($themeEnabled ? "" : "disabled");?> <?php p($themeLoginPage ? "checked" : "");?>>
-    <label for="breakhousecustom-theme-login-page"><?php p($l->t("Theme the login page")); ?></label>
+    <label for="breakhousecustom-theme-login-page"><?php p($l->t("Theme the login page")); ?></label> --
 </div>
