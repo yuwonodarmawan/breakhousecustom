@@ -27,6 +27,6 @@ window.addEventListener("DOMContentLoaded", function () {
         $.post(OC.generateUrl("apps/breakhousecustom/settings/admin"), {
             retentiondays: this.value
         });
-		console.log(retentiondays);
+
     });
 });
