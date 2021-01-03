@@ -54,11 +54,9 @@ class Admin implements ISettings {
      * @return TemplateResponse
      */
     public function getForm(): TemplateResponse {
-        $themeEnabled = $this->config->getAppValue($this->appName, 'theme_enabled', "0");
-        $themeLoginPage = $this->config->getAppValue($this->appName, 'theme_login_page', "1");
+        $retentionDays = $this->config->getAppValue($this->appName, 'retention_days');
         return new TemplateResponse('breakhousecustom', 'admin', [ 
-            "themeEnabled" => $themeEnabled,
-            "themeLoginPage" => $themeLoginPage
+            "retentionDays" => $retentionDays
         ]);
     }
 

@@ -35,6 +35,11 @@ use OCP\AppFramework\Bootstrap\IRegistrationContext;
 use OCP\IConfig;
 use OCP\IUserSession;
 use OCP\Util;
+use OCA\Recommendations\Dashboard\RecommendationWidget;
+
+class Recomm extends RecommendationWidget {
+	
+}
 
 class Application extends App implements IBootstrap {
 
@@ -61,29 +66,10 @@ class Application extends App implements IBootstrap {
      */
     public function doTheming(IConfig $config, IUserSession $userSession): void {
         $user = $userSession->getUser();
-        $default = $config->getAppValue($this->appName, "theme_enabled", "0");
-        $loginPage = $config->getAppValue($this->appName, "theme_login_page", "1");
-
-        if (!is_null($user) AND $config->getUserValue($user->getUID(), $this->appName, "theme_enabled", $default)) {
-            // When shown the 2FA login page you are logged in while also being on a login page, 
-            // so a logged in user still needs the guests.css stylesheet
-            $this->addStyling($loginPage);
-        } else if (is_null($user) AND $default) {
-            $this->addStyling($loginPage);
-        }
-    }
-
-    /**
-     * Add stylesheet(s) to nextcloud
-     * 
-     * @param string $loginPage
-     */
-    public function addStyling(string $loginPage): void {
-        Util::addStyle($this->appName, 'server');
-
-        // If the styling for the login page is wanted, load the stylesheet.
-        if ($loginPage) {
-            Util::addStyle($this->appName, 'guest');
-        }
+		Util::addStyle($this->appName, 'breakhousecustom');
+		$recomm = new Recomm();
+		$recomm->getTitle()->('Recent files');
     }
 }
+
+

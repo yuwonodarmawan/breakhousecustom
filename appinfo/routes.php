@@ -26,7 +26,6 @@
 
 return [
     'routes' => [
-//        ['name' => 'settings#personal', 'url' => '/settings', 'verb' => 'POST'],
         ['name' => 'settings#admin', 'url' => '/settings/admin', 'verb' => 'POST'],
     ],
 ];

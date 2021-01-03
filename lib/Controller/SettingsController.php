@@ -58,34 +58,4 @@ class SettingsController extends Controller {
         $this->config = $config;
         $this->userId = $userSession->getUser()->getUID();
     }
-
-    /**
-     * @NoAdminRequired
-     * 
-     * Set user theme option
-     */
-    public function personal(): void {
-        if ($this->request->getParam("theme_enabled")) {
-            $this->config->setUserValue($this->userId, $this->appName, "theme_enabled", "1");
-        } else {
-            $this->config->setUserValue($this->userId, $this->appName, "theme_enabled", "0");
-        }
-    }
-
-    /**
-     * Set global theme option
-     */
-    public function admin(): void {
-        if ($this->request->getParam("theme_enabled")) {
-            $this->config->setAppValue($this->appName, "theme_enabled", "1");
-        } else {
-            $this->config->setAppValue($this->appName, "theme_enabled", "0");
-        }
-
-        if ($this->request->getParam("theme_login_page")) {
-            $this->config->setAppValue($this->appName, "theme_login_page", "1");
-        } else {
-            $this->config->setAppValue($this->appName, "theme_login_page", "0");
-        }
-    }
 }

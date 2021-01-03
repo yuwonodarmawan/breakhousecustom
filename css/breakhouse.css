@@ -1,0 +1,15 @@
+/**
+ * Breakhouse Custom Configuration for Nextcloud
+ *
+ * @copyright Copyright (c) 2020, Yuwono Darmawan <yuwono.darmawanm@wengkerindo.xyz>
+ *
+ * @license GNU AGPL version 3 or any later version, see COPYING file for more.
+ */
+ 
+div#app-dashboard {
+    background-image: url(/apps/breakhousecustom/img/background.jpg) !important;
+}
+
+.section.development-notice {
+    display: none !important;
+}

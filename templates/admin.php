@@ -25,34 +25,6 @@
 
 
 script('breakhousecustom', 'settings-admin');
-
-$mail_smtpauthtype = [
-        ''      => $l->t('None'),
-        'LOGIN' => $l->t('Login'),
-        'PLAIN' => $l->t('Plain'),
-        'NTLM'  => $l->t('NT LAN Manager'),
-];
-
-$mail_smtpsecure = [
-        ''              => $l->t('None'),
-        'ssl'   => $l->t('SSL/TLS'),
-        'tls'   => $l->t('STARTTLS'),
-];
-
-$mail_smtpmode = [
-        ['smtp', 'SMTP'],
-];
-if ($_['sendmail_is_available']) {
-        $mail_smtpmode[] = ['sendmail', 'Sendmail'];
-}
-if ($_['mail_smtpmode'] === 'qmail') {
-        $mail_smtpmode[] = ['qmail', 'qmail'];
-}
-
-$mail_sendmailmode = [
-        'smtp' => 'smtp (-bs)',
-        'pipe' => 'pipe (-t)'
-];
 $retention_days=30;
 ?>
 
@@ -77,15 +49,9 @@ $retention_days=30;
 				<?php } ?>
         </select> days.
     </p>
-    <p><label for="files_retention"><?php p($l->t('Dashboard edit panel only available for group :')); ?></label>
+    <p><label for="dashboard_panel"><?php p($l->t('Dashboard edit panel only available for group :')); ?></label>
         <select name="panel_group" id="customized_dashboard">
              <option value ="MAINTENANCE-MODE" seleted>MAINTENANCE-MODE</option>
         </select> 
     </p>
 
-<!--    <input type="checkbox" class="checkbox" id="breakhousecustom-theme-enabled" <?php p($themeEnabled ? "checked" : ""); ?>>
-    <label for="breakhousecustom-theme-enabled"><?php p($l->t("Enable Breeze Dark theme by default")); ?></label>
-    <p><?php p($l->t("This setting will allow you to choose if the login page should be themed when the theme is enabled by default")); ?></p>
-    <input type="checkbox" class="checkbox" id="breakhousecustom-theme-login-page" <?php p($themeEnabled ? "" : "disabled");?> <?php p($themeLoginPage ? "checked" : "");?>>
-    <label for="breakhousecustom-theme-login-page"><?php p($l->t("Theme the login page")); ?></label> --
-</div>

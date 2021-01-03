@@ -23,19 +23,10 @@
  */
 
 window.addEventListener("DOMContentLoaded", function () {
-    $("#breakhousecustom-theme-enabled").change(function () {
+    $("#trash_bin_retention").change(function () {
         $.post(OC.generateUrl("apps/breakhousecustom/settings/admin"), {
-            theme_enabled: this.checked ? 1 : 0,
-            theme_login_page: $("#breakhousecustom-theme-login-page").prop("checked") ? 1 : 0,
+            retentiondays: this.value
         });
-
-        $("#breakhousecustom-theme-login-page").prop("disabled", !$("#breakhousecustom-theme-enabled").prop("checked"))
-    });
-
-    $("#breakhousecustom-theme-login-page").change(function () {
-        $.post(OC.generateUrl("apps/breakhousecustom/settings/admin"), {
-            theme_login_page: this.checked ? 1 : 0,
-            theme_enabled: $("#breakhousecustom-theme-enabled").prop("checked") ? 1 : 0,
-        });
+		console.log(retentiondays);
     });
 });
