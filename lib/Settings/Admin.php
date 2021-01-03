@@ -54,9 +54,9 @@ class Admin implements ISettings {
      * @return TemplateResponse
      */
     public function getForm(): TemplateResponse {
-        $retentionDays = $this->config->getAppValue($this->appName, 'retention_days');
+        $retentionDays = $this->config->getAppValue($this->appName, 'retentiondays');
         return new TemplateResponse('breakhousecustom', 'admin', [ 
-            "retentionDays" => $retentionDays
+            "retentiondays" => $retentiondays
         ]);
     }
 
